@@ -15,11 +15,12 @@ class Greeter extends Component {
 
   render() {
     return(
-      <>
+      <div>
         <h1>Hi {this.props.name}!</h1>
         <p>This is your raffle number: {this.state.raffleNumber}</p>
         <button onClick={this.getRaffleNumber}>Pick a raffle number</button>
-      </>)  
+      </div>
+    )  
   }
 }
 
