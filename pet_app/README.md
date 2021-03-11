@@ -1,24 +1,23 @@
-# README
+# Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Intro to Active Record
 
-Things you may want to cover:
+    `rails generate model Dog name:string breed:string age:integer`
 
-* Ruby version
+will create a dog.rb file and a migration file for creating the Dog table.
 
-* System dependencies
+    `rails db:migrate`
+will actually run the scripts that will tell the database to create the table.
 
-* Configuration
+    `rails c`
+ is Rails Console which allows you access the db and perform CRUD (Create Read Update Delete) actions
+ 
+ For updating instances in the database, you can assign values to instance properties
+ 
 
-* Database creation
+    `churro.age = 15`
+and you'll need to tell the database to actually do the update using `.save` method
 
-* Database initialization
+    `churro.save`
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Active Record is the Rails ORM and mostly responsible for the M (model) in MVC.
