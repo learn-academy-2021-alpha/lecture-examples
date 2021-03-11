@@ -21,3 +21,11 @@ and you'll need to tell the database to actually do the update using `.save` met
     churro.save
 
 Active Record is the Rails ORM and mostly responsible for the M (model) in MVC.
+
+
+### Active Record Migrations
+
+Steps for making changes to database:
+1. Generate Migration file using `rails g migration AddColumnToTable`
+2. Update logic in `change` method to reflect desired changes (use migration definitions)
+3. Tell the database to perform the migration using `rails db:migrate`
