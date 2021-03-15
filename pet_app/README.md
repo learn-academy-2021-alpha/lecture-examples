@@ -37,15 +37,15 @@ Model Validations - process of ensuring data is valid and suitable for the datab
 Syntax for providing a model validation
 `validates :column_name, validator: conditional`
 
-validates - a method that takes a varying number of arguments
+`validates` - a method that takes a varying number of arguments
 
 When do model validations get run?
 Anytime there is an attempt to perform a CRUD action, the validations will run.
 The difference between just calling the CRUD method and yelling the method is whether Active Record will yell back.
 
-.valid? - a method that also runs the validations without attempting a CRUD action, returns true or false;
+`.valid?` - a method that also runs the validations without attempting a CRUD action, returns true or false;
 if it returns false, it'll add errors on the instance to an instance variable named "errors" (e.g.   instance.errors)
 
-.errors - a method that returns the list of errors encountered while running model validations
+`.errors` - a method that returns the list of errors encountered while running model validations
 
-belong_to assocations are default validations
+`belongs_to` assocations are default validations
