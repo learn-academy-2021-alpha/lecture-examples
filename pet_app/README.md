@@ -48,4 +48,17 @@ if it returns false, it'll add errors on the instance to an instance variable na
 
 `.errors` - a method that returns the list of errors encountered while running model validations
 
-`belongs_to` assocations are default validations
+`belongs_to` associations are default validations
+
+### Model Rspec Testing
+To add rspec to project:
+`bundle add rspec-rails`
+
+To add boilerplate code for rspec:
+`rails generate rspec:install` or
+`rails g rspec:install`
+
+To run tests:
+`rspec` -run all spec files in app
+`rspec spec` -run only spec files in /spec
+`rspec spec/models/veterinarian_spec.rb` - target a specific file
