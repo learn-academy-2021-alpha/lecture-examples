@@ -11,9 +11,9 @@ will actually run the scripts that will tell the database to create the table.
 
     rails c
  is Rails Console which allows you access the db and perform CRUD (Create Read Update Delete) actions
- 
+
  For updating instances in the database, you can assign values to instance properties
- 
+
 
     churro.age = 15
 and you'll need to tell the database to actually do the update using `.save` method
@@ -99,4 +99,26 @@ Syntax for embedding Ruby into HTML:
 <%= ruby_code %>
 Instance variables are declared in the controller and can be embedded in a view file.
 
-link_to - a method that create a hypertext link, takes two strings as arguments: 1) display text, 2) URL segment of another route 
+link_to - a method that create a hypertext link, takes two strings as arguments: 1) display text, 2) URL segment of another route
+
+
+### Rails Params
+
+Parameters allow a developer to pass dynamic information into a controller method.
+
+Passing values into the url to provide the app with more information.
+
+Setting an instance variable to expect params from the url and then assign it a value.
+
+```ruby
+@bev_type = params[:type]
+```
+This defines the params in the url.
+http://localhost:3000/beverage?type=coffee
+
+
+Or you can modify the route to expect the param.
+```ruby
+get '/beverage/:type' => 'food#beverage'
+```
+http://localhost:3000/beverage/coffee
