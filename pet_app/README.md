@@ -62,3 +62,41 @@ To run tests:
 `rspec` -run all spec files in app
 `rspec spec` -run only spec files in /spec
 `rspec spec/models/veterinarian_spec.rb` - target a specific file
+
+### Rails Routes, Views, Controllers
+
+URL - Uniform Resource Locator, the address associated with some way of sending data to an application
+
+https://github.com/learn-academy-2021-alpha
+
+https:// - the protocol, method for sending and receiving data
+github - the host
+.com - top-level domain
+
+github.com - the domain/host
+
+/learn-academy-2021-alpha - a segment of a path
+
+What is a controller?
+It is where actions/methods associated with requests live.
+The controller is responsible for handling incoming HTTP requests and providing responses.
+The controller orchestrates the interaction between model and view.
+
+
+What is a resource?
+In the HTTP context, a resource is a model.
+For example, Dog is a resource.
+Can perform CRUD on resource.
+
+Making the connection:
+1. generated the controller: $rails g controller Main
+2. added an action on the controller that uses the render method to provide a response
+3. added a route to associate a URL segment with the action in our controller (Convention:  HTTP_METHOD '/URL_segment' => 'controller#method')
+
+Landing page is what the user sees when they first visit your site.
+
+Syntax for embedding Ruby into HTML:
+<%= ruby_code %>
+Instance variables are declared in the controller and can be embedded in a view file.
+
+link_to - a method that create a hypertext link, takes two strings as arguments: 1) display text, 2) URL segment of another route 
