@@ -1,0 +1,19 @@
+<h3>Edit an Herb</h3>
+
+<%= form_with model: @herb, method: :patch, local: true do |form| %>
+
+  <%= form.label :name %>
+  <%= form.text_field :name%>
+  <br />
+  <%= form.radio_button :is_watered, "yes"%>
+  <%= form.label :is_watered, "Herb is watered"%>
+  <br />
+  <%= form.radio_button :is_watered, "no"%>
+  <%= form.label :is_watered, "Herb is not watered"%>
+  <br />
+  <%= form.submit 'Edit Herb'%>
+  <%= form.submit 'Clear', :type => 'reset' %>
+<% end %>
+
+<br />
+<p>Back to <%= link_to 'All the Herbs', herbs_path %></p>
