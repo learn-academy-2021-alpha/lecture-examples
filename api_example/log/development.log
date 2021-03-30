@@ -1,0 +1,240 @@
+  [1m[35m (12990.2ms)[0m  [1m[35mCREATE DATABASE "api_example_development" ENCODING = 'unicode'[0m
+  [1m[35m (7090.9ms)[0m  [1m[35mCREATE DATABASE "api_example_test" ENCODING = 'unicode'[0m
+  [1m[35m (2097.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1021.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3724417081305818205)[0m
+  [1m[35m (209.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateStudents (20210318163335)
+  [1m[35m (138.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2249.7ms)[0m  [1m[35mCREATE TABLE "students" ("id" bigserial primary key, "name" character varying, "cohort" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210318163335"]]
+  [1m[35m (19.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (7.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (3716.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (430.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-03-18 16:41:40.839082"], ["updated_at", "2021-03-18 16:41:40.839082"]]
+  [1m[35m (4.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (5.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(3724417081305818205)[0m
+  [1m[35m (60.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mStudent Load (9.5ms)[0m  [1m[34mSELECT "students".* FROM "students" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStudent Create (13.8ms)[0m  [1m[32mINSERT INTO "students" ("name", "cohort", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Steph"], ["cohort", "Alpha"], ["created_at", "2021-03-18 16:42:28.288230"], ["updated_at", "2021-03-18 16:42:28.288230"]]
+  [1m[35m (7.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStudent Create (0.4ms)[0m  [1m[32mINSERT INTO "students" ("name", "cohort", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Ryan"], ["cohort", "Echo"], ["created_at", "2021-03-18 16:42:43.178132"], ["updated_at", "2021-03-18 16:42:43.178132"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStudent Create (0.5ms)[0m  [1m[32mINSERT INTO "students" ("name", "cohort", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Justin"], ["cohort", "Alpha"], ["created_at", "2021-03-18 16:42:57.535529"], ["updated_at", "2021-03-18 16:42:57.535529"]]
+  [1m[35m (9.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/" for ::1 at 2021-03-18 09:43:57 -0700
+  [1m[35m (30.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/sarahproctor/.rvm/gems/ruby-2.7.0/gems/railties-6.0.3.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/sarahproctor/.rvm/gems/ruby-2.7.0/gems/railties-6.0.3.5/lib/rails/templates/rails/welcome/index.html.erb (Duration: 227.8ms | Allocations: 409)
+Completed 200 OK in 364ms (Views: 270.0ms | ActiveRecord: 0.0ms | Allocations: 2484)
+
+
+Started GET "/students" for ::1 at 2021-03-18 09:51:32 -0700
+Processing by StudentsController#index as */*
+  Parameters: {"student"=>{}}
+  [1m[36mStudent Load (135.3ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  ↳ app/controllers/students_controller.rb:4:in `index'
+Completed 200 OK in 225ms (Views: 41.5ms | ActiveRecord: 822.7ms | Allocations: 3985)
+
+
+Started GET "/" for ::1 at 2021-03-18 09:52:40 -0700
+Processing by Rails::WelcomeController#index as */*
+  Parameters: {"welcome"=>{}}
+  Rendering /Users/sarahproctor/.rvm/gems/ruby-2.7.0/gems/railties-6.0.3.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/sarahproctor/.rvm/gems/ruby-2.7.0/gems/railties-6.0.3.5/lib/rails/templates/rails/welcome/index.html.erb (Duration: 51.0ms | Allocations: 178)
+Completed 200 OK in 83ms (Views: 57.1ms | ActiveRecord: 0.0ms | Allocations: 817)
+
+
+Started GET "/students" for ::1 at 2021-03-18 09:53:48 -0700
+Processing by StudentsController#index as */*
+  Parameters: {"student"=>{}}
+  [1m[36mStudent Load (165.9ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  ↳ app/controllers/students_controller.rb:4:in `index'
+Completed 200 OK in 175ms (Views: 7.3ms | ActiveRecord: 165.9ms | Allocations: 1244)
+
+
+Started GET "/students/1" for ::1 at 2021-03-18 09:55:15 -0700
+Processing by StudentsController#show as */*
+  Parameters: {"id"=>"1", "student"=>{}}
+  [1m[36mStudent Load (8.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:7:in `show'
+Completed 200 OK in 898ms (Views: 4.3ms | ActiveRecord: 1451.7ms | Allocations: 3622)
+
+
+Started GET "/students/3" for ::1 at 2021-03-18 09:55:45 -0700
+Processing by StudentsController#show as */*
+  Parameters: {"id"=>"3", "student"=>{}}
+  [1m[36mStudent Load (1.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:7:in `show'
+Completed 200 OK in 6ms (Views: 0.9ms | ActiveRecord: 1.4ms | Allocations: 825)
+
+
+Started GET "/students/7" for ::1 at 2021-03-18 09:55:53 -0700
+Processing by StudentsController#show as */*
+  Parameters: {"id"=>"7", "student"=>{}}
+  [1m[36mStudent Load (141.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:7:in `show'
+Completed 404 Not Found in 151ms (ActiveRecord: 141.5ms | Allocations: 1040)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Student with 'id'=7):
+  
+app/controllers/students_controller.rb:7:in `show'
+Started GET "/students" for ::1 at 2021-03-18 09:57:08 -0700
+Processing by StudentsController#index as */*
+  Parameters: {"student"=>{}}
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  ↳ app/controllers/students_controller.rb:4:in `index'
+Completed 200 OK in 13ms (Views: 10.7ms | ActiveRecord: 0.6ms | Allocations: 1293)
+
+
+Started POST "/students" for ::1 at 2021-03-18 10:05:36 -0700
+Processing by StudentsController#create as */*
+  Parameters: {"name"=>"Rachael", "cohort"=>"Charlie", "student"=>{"name"=>"Rachael", "cohort"=>"Charlie"}}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 2ms (ActiveRecord: 0.0ms | Allocations: 424)
+
+
+  
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+actionpack (6.0.3.5) lib/action_controller/metal/request_forgery_protection.rb:215:in `handle_unverified_request'
+actionpack (6.0.3.5) lib/action_controller/metal/request_forgery_protection.rb:247:in `handle_unverified_request'
+actionpack (6.0.3.5) lib/action_controller/metal/request_forgery_protection.rb:242:in `verify_authenticity_token'
+activesupport (6.0.3.5) lib/active_support/callbacks.rb:428:in `block in make_lambda'
+activesupport (6.0.3.5) lib/active_support/callbacks.rb:200:in `block (2 levels) in halting'
+actionpack (6.0.3.5) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (6.0.3.5) lib/active_support/callbacks.rb:201:in `block in halting'
+activesupport (6.0.3.5) lib/active_support/callbacks.rb:513:in `block in invoke_before'
+activesupport (6.0.3.5) lib/active_support/callbacks.rb:513:in `each'
+activesupport (6.0.3.5) lib/active_support/callbacks.rb:513:in `invoke_before'
+activesupport (6.0.3.5) lib/active_support/callbacks.rb:134:in `run_callbacks'
+actionpack (6.0.3.5) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (6.0.3.5) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (6.0.3.5) lib/action_controller/metal/instrumentation.rb:33:in `block in process_action'
+activesupport (6.0.3.5) lib/active_support/notifications.rb:180:in `block in instrument'
+activesupport (6.0.3.5) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (6.0.3.5) lib/active_support/notifications.rb:180:in `instrument'
+actionpack (6.0.3.5) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (6.0.3.5) lib/action_controller/metal/params_wrapper.rb:245:in `process_action'
+activerecord (6.0.3.5) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.0.3.5) lib/abstract_controller/base.rb:136:in `process'
+actionview (6.0.3.5) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.0.3.5) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.0.3.5) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.0.3.5) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.0.3.5) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.3.5) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.3.5) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.3.5) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.3.5) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (6.0.3.5) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.0.3.5) lib/action_dispatch/middleware/cookies.rb:648:in `call'
+activerecord (6.0.3.5) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.3.5) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.5) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.5) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.5) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.5) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.3.5) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.5) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.5) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.5) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.5) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.5) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.5) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.5) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.5) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.5) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.5) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.5) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.5) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.5) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.5) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/students" for ::1 at 2021-03-18 10:08:17 -0700
+Processing by StudentsController#create as */*
+  Parameters: {"name"=>"Rachael", "cohort"=>"Charlie", "student"=>{"name"=>"Rachael", "cohort"=>"Charlie"}}
+  [1m[35m (28.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:11:in `create'
+  [1m[36mStudent Create (2.2ms)[0m  [1m[32mINSERT INTO "students" ("name", "cohort", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Rachael"], ["cohort", "Charlie"], ["created_at", "2021-03-18 17:08:19.571212"], ["updated_at", "2021-03-18 17:08:19.571212"]]
+  ↳ app/controllers/students_controller.rb:11:in `create'
+  [1m[35m (34.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/students_controller.rb:11:in `create'
+Completed 200 OK in 1078ms (Views: 0.5ms | ActiveRecord: 1432.6ms | Allocations: 5210)
+
+
+Started POST "/students" for ::1 at 2021-03-18 10:24:00 -0700
+Processing by StudentsController#create as */*
+  Parameters: {"name"=>"Testing", "cohort"=>"testing", "student"=>{"name"=>"Testing", "cohort"=>"testing"}}
+  [1m[35m (212.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:11:in `create'
+  [1m[36mStudent Create (537.2ms)[0m  [1m[32mINSERT INTO "students" ("name", "cohort", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Testing"], ["cohort", "testing"], ["created_at", "2021-03-18 17:24:02.872612"], ["updated_at", "2021-03-18 17:24:02.872612"]]
+  ↳ app/controllers/students_controller.rb:11:in `create'
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/students_controller.rb:11:in `create'
+Completed 200 OK in 1083ms (Views: 1.1ms | ActiveRecord: 751.7ms | Allocations: 4983)
+
+
+Started DELETE "/students/5" for ::1 at 2021-03-18 10:24:33 -0700
+Processing by StudentsController#destroy as */*
+  Parameters: {"name"=>"Testing", "cohort"=>"testing", "id"=>"5", "student"=>{"name"=>"Testing", "cohort"=>"testing"}}
+  [1m[36mStudent Load (8.9ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:19:in `destroy'
+  [1m[35m (22.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:20:in `destroy'
+  [1m[36mStudent Destroy (33.6ms)[0m  [1m[31mDELETE FROM "students" WHERE "students"."id" = $1[0m  [["id", 5]]
+  ↳ app/controllers/students_controller.rb:20:in `destroy'
+  [1m[35m (64.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/students_controller.rb:20:in `destroy'
+Completed 200 OK in 380ms (Views: 5.2ms | ActiveRecord: 152.6ms | Allocations: 2887)
+
+
+Started GET "/students" for ::1 at 2021-03-18 10:25:00 -0700
+Processing by StudentsController#index as */*
+  Parameters: {"name"=>"Testing", "cohort"=>"testing", "student"=>{"name"=>"Testing", "cohort"=>"testing"}}
+  [1m[36mStudent Load (22.0ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  ↳ app/controllers/students_controller.rb:4:in `index'
+Completed 200 OK in 33ms (Views: 8.0ms | ActiveRecord: 22.0ms | Allocations: 1339)
+
+
+Started PATCH "/students/4" for ::1 at 2021-03-18 10:28:47 -0700
+Processing by StudentsController#update as */*
+  Parameters: {"name"=>"Rachael", "cohort"=>"Delta", "id"=>"4", "student"=>{"name"=>"Rachael", "cohort"=>"Delta"}}
+  [1m[36mStudent Load (3.8ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/students_controller.rb:27:in `update'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/students_controller.rb:28:in `update'
+  [1m[36mStudent Update (138.6ms)[0m  [1m[33mUPDATE "students" SET "cohort" = $1, "updated_at" = $2 WHERE "students"."id" = $3[0m  [["cohort", "Delta"], ["updated_at", "2021-03-18 17:28:49.696709"], ["id", 4]]
+  ↳ app/controllers/students_controller.rb:28:in `update'
+  [1m[35m (81.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/students_controller.rb:28:in `update'
+Completed 200 OK in 289ms (Views: 6.8ms | ActiveRecord: 1105.5ms | Allocations: 5719)
+
+
