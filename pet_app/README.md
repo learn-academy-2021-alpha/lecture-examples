@@ -82,7 +82,6 @@ It is where actions/methods associated with requests live.
 The controller is responsible for handling incoming HTTP requests and providing responses.
 The controller orchestrates the interaction between model and view.
 
-
 What is a resource?
 In the HTTP context, a resource is a model.
 For example, Dog is a resource.
